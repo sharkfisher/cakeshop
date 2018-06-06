@@ -210,6 +210,10 @@ public class ContractServiceImpl implements ContractService {
             data = data + Hex.toHexString(constructor.encode(args));
         }
 
+        if (!data.startsWith("0x") && !data.startsWith("0X")) {
+            data = "0x"+data;
+        }
+        
         Map<String, Object> contractArgs = new HashMap<>();
         contractArgs.put("from", getAddress(from));
         contractArgs.put("data", data);
